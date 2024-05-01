@@ -6,7 +6,7 @@ import smbus
 # Raspi PCA9685 16-Channel PWM Servo Driver
 # ============================================================================
 
-class Joint:
+class JointController:
   
   # Registers/etc.
   __SUBADR1            = 0x02
@@ -23,9 +23,7 @@ class Joint:
   __ALLLED_OFF_L       = 0xFC
   __ALLLED_OFF_H       = 0xFD
 
-  def __init__(self, address=0x40, debug=False, minPulse=500, maxPulse=2500):
-    self.minPulse = minPulse
-    self.maxPulse = maxPulse
+  def __init__(self, address=0x40, debug=False):
     self.bus = smbus.SMBus(1)
     self.address = address
     self.debug = debug
@@ -78,9 +76,5 @@ class Joint:
 	  
   def setServoPulse(self, channel, pulse):
     "Sets the Servo Pulse,The PWM frequency must be 50HZ"
-    if pulse > self.maxPulse:
-        pulse = self.maxPulse
-    if pulse < self.minPulse:
-        pulse = self.minPulse
     pulse = pulse*4096/20000        #PWM frequency is 50HZ,the period is 20000us
     self.setPWM(channel, 0, int(pulse))
