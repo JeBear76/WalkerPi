@@ -7,10 +7,14 @@ class Joint:
         self.minPulse = minPulse
         self.maxPulse = maxPulse
     
-    def setPosition(self, position):
+    def setPosition(self, position = None):
         pulse = position
+        if position is None:
+            pulse = int((self.maxPulse + self.minPulse)/2)
+
         if pulse > self.maxPulse:
             pulse = self.maxPulse
         if pulse < self.minPulse:
             pulse = self.minPulse
+
         self.Controller.setServoPulse(self.channel, pulse)
