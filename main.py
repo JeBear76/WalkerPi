@@ -32,15 +32,6 @@ if __name__=='__main__':
   BLLeg = Leg(BLSjoint, BLKjoint, BLHjoint)
   FLLeg = Leg(FLSjoint, FLKjoint, FLHjoint)
 
-  FRSjoint.setPosition()
-  time.sleep(0.02)
-  BRSjoint.setPosition()
-  time.sleep(0.02)
-  BLSjoint.setPosition()
-  time.sleep(0.02)
-  FLSjoint.setPosition()
-  time.sleep(0.02)
-
   minPulse = 500
   maxPulse = 2700
   input("Waiting...")

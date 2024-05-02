@@ -5,3 +5,9 @@ class Leg:
         self.shoulder = shoulder
         self.knee = knee
         self.hock = hock
+        self.Reset()
+
+    def Reset(self):
+        self.shoulder.setPosition()
+        self.knee.setPosition()
+        self.hock.setPosition()
