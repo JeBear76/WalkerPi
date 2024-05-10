@@ -1,7 +1,7 @@
 from PCA9685 import JointController
 
 class Joint:
-    def __init__(self, channel, minPulse, maxPulse, initPulse, controller = JointController(0x40, debug=True)):
+    def __init__(self, channel, minPulse, maxPulse, initPulse, controller):
         self.Controller = controller
         self.channel = channel
         self.minPulse = minPulse
