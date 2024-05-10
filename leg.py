@@ -23,12 +23,12 @@ class Leg:
         if direction == const.FORWARD:
             if not self.action:
                 if self.side == const.RIGHT:
-                    desiredPulse = int(self.shoulder.maxPulse*.85)
+                    desiredPulse = int(self.shoulder.maxPulse*.80)
                     self.shoulder.setPulse(desiredPulse)
                 elif self.side == const.LEFT:
-                    desiredPulse = int(self.shoulder.minPulse/.85)
+                    desiredPulse = int(self.shoulder.minPulse/.80)
                     self.shoulder.setPulse(desiredPulse)
-                if desiredPulse == self.shoulder.oldPulse:
+                if desiredPulse <= self.shoulder.oldPulse:
                     action = not action
             else:
                 if self.side == const.RIGHT:
@@ -37,7 +37,7 @@ class Leg:
                 elif self.side == const.LEFT:
                     desiredPulse = int(self.shoulder.maxPulse)
                     self.shoulder.setPulse(desiredPulse)
-                if desiredPulse == self.shoulder.oldPulse:
+                if desiredPulse >= self.shoulder.oldPulse:
                     action = not action
 
 
