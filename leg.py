@@ -8,6 +8,9 @@ class Leg:
         self.Reset()
 
     def Reset(self):
-        self.shoulder.setPosition()
-        self.knee.setPosition()
-        self.hock.setPosition()
+        if self.shoulder is not None:
+            self.shoulder.setPosition()
+        if self.knee is not None:
+            self.knee.setPosition()
+        if self.hock is not None:
+            self.hock.setPosition()
