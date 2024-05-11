@@ -3,6 +3,8 @@ from joint import Joint
 from leg import Leg
 from PCA9685 import JointController
 import constants as const
+import time
+
 if __name__=='__main__':
   pwm = JointController(0x40, debug=False)
   pwm.setPWMFreq(50)
@@ -16,8 +18,8 @@ if __name__=='__main__':
   #Knees
   FRKjoint = Joint(4, 500, 2100, 2100, controller=pwm)
   BRKjoint = Joint(5, 500, 2100, 600, controller=pwm)
-  FLKjoint = Joint(7, 500, 2100, 2100, controller=pwm)
-  BLKjoint = Joint(6, 500, 2100, 600, controller=pwm)
+  FLKjoint = Joint(7, 500, 2100, 600, controller=pwm)
+  BLKjoint = Joint(6, 500, 2100, 2100, controller=pwm)
 
   #Hock
   FRHjoint = Joint(8, 500, 2100, 1900, controller=pwm)
@@ -30,9 +32,17 @@ if __name__=='__main__':
   BLLeg = Leg(BLSjoint, BLKjoint, BLHjoint, const.LEFT)
   FLLeg = Leg(FLSjoint, FLKjoint, FLHjoint, const.LEFT)
 
+  time.sleep(2)
   while True:
     try:
       FRLeg.Move(const.FORWARD)
+      time.sleep(.125)
+      BLLeg.Move(const.FORWARD)
+      time.sleep(.125)
+      FLLeg.Move(const.FORWARD)
+      time.sleep(.125)
+      BRLeg.Move(const.FORWARD)
+      time.sleep(.125)
     except KeyboardInterrupt:
       break;
-  pwm = None
+  pwm.Reset()

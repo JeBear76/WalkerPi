@@ -23,22 +23,24 @@ class Leg:
         if direction == const.FORWARD:
             if not self.action:
                 if self.side == const.RIGHT:
-                    desiredPulse = int(self.shoulder.maxPulse*.80)
+                    desiredPulse = int(self.shoulder.maxPulse*.850)
+                    print (f'(d: {desiredPulse}, o: {self.shoulder.oldPulse})')
                     self.shoulder.setPulse(desiredPulse)
                 elif self.side == const.LEFT:
-                    desiredPulse = int(self.shoulder.minPulse/.80)
+                    desiredPulse = int(self.shoulder.minPulse/.85)
                     self.shoulder.setPulse(desiredPulse)
                 if desiredPulse <= self.shoulder.oldPulse:
-                    action = not action
+                    self.action = not self.action
             else:
                 if self.side == const.RIGHT:
                     desiredPulse = int(self.shoulder.minPulse)
+                    print (f'(d: {desiredPulse}, o: {self.shoulder.oldPulse})')
                     self.shoulder.setPulse(desiredPulse)
                 elif self.side == const.LEFT:
                     desiredPulse = int(self.shoulder.maxPulse)
                     self.shoulder.setPulse(desiredPulse)
                 if desiredPulse >= self.shoulder.oldPulse:
-                    action = not action
+                    self.action = not self.action
 
 
     

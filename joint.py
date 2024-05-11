@@ -16,6 +16,6 @@ class Joint:
             pulse = self.maxPulse
         if pulse < self.minPulse:
             pulse = self.minPulse
-        mvPulse = int(((500 * pulse) + (9500 * self.oldPulse))/10000)
+        mvPulse = pulse # float(((1200000 * pulse) + (99000000 * self.oldPulse))/100000000)
         self.oldPulse = mvPulse
         self.Controller.setServoPulse(self.channel, mvPulse)
