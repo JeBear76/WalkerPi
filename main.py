@@ -26,9 +26,13 @@ if __name__=='__main__':
   FLHjoint = Joint(11, 500, 2100, 600, controller=pwm)
 
   FRLeg = Leg(FRSjoint, FRKjoint, FRHjoint, const.RIGHT)
-  # BRLeg = Leg(BRSjoint, BRKjoint, BRHjoint)
-  # BLLeg = Leg(BLSjoint, BLKjoint, BLHjoint)
-  # FLLeg = Leg(FLSjoint, FLKjoint, FLHjoint)
+  BRLeg = Leg(BRSjoint, BRKjoint, BRHjoint, const.RIGHT)
+  BLLeg = Leg(BLSjoint, BLKjoint, BLHjoint, const.LEFT)
+  FLLeg = Leg(FLSjoint, FLKjoint, FLHjoint, const.LEFT)
 
   while True:
-    FRLeg.Move(const.FORWARD)
+    try:
+      FRLeg.Move(const.FORWARD)
+    except KeyboardInterrupt:
+      break;
+  pwm = None
